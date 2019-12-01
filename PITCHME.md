@@ -1,12 +1,15 @@
 ## RustでWebAssemblyのインタプリタを作った話
 2019/12/08  
 tkr
+
 ---
 
 ### スライド資料
 <img src="qr.png" width="256" height="256">
 
 https://gitpitch.com/kgtkr/slide-student-lt-32
+
+---
 
 ### 自己紹介
 * tkr
