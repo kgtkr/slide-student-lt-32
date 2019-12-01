@@ -3,4 +3,8 @@
 tkr
 ---
 
-## 自己紹介
+### 自己紹介
+名前: tkr
+twitter: @kgtkr
+
+![](icon.png)
