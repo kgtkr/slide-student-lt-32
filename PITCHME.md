@@ -1,4 +1,4 @@
-# RustでWebAssemblyのインタプリタを作った話
+## RustでWebAssemblyのインタプリタを作った話
 
 ---
 
