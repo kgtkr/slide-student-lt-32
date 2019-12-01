@@ -3,6 +3,11 @@
 tkr
 ---
 
+### スライド資料
+<img src="qr.png" width="256" height="256">
+
+https://gitpitch.com/kgtkr/slide-student-lt-32
+
 ### 自己紹介
 * tkr
 * @kgtkr
@@ -12,6 +17,8 @@ tkr
 * 初LT
 
 <img src="icon.png" width="128" height="128">
+
+---
 
 ### 宣伝
 Anontownという掲示板サービスの開発・運営をしています
