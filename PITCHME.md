@@ -7,4 +7,4 @@ tkr
 名前: tkr  
 twitter: @kgtkr  
 
-![](icon.png)
+<img src="icon.png" width="256" height="256">
