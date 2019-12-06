@@ -104,7 +104,24 @@ valtype ::= 0x7F => i32
 
 ---
 
-#### Rustコード
+#### デコーダー
+
+```rs
+impl Decoder for ValType {
+    fn decode(input: &[u8]) -> IResult<&[u8], ValType> {
+        alt((
+            map(parser::token(0x7f), |_| ValType::I32),
+            map(parser::token(0x7e), |_| ValType::I64),
+            map(parser::token(0x7d), |_| ValType::F32),
+            map(parser::token(0x7c), |_| ValType::F64),
+        ))(input)
+    }
+}
+```
+
+---
+
+#### エンコーダー
 
 ```rs
 impl Encoder for ValType {
@@ -117,15 +134,89 @@ impl Encoder for ValType {
         });
     }
 }
+```
 
-impl Decoder for ValType {
-    fn decode(input: &[u8]) -> IResult<&[u8], ValType> {
-        alt((
-            map(parser::token(0x7f), |_| ValType::I32),
-            map(parser::token(0x7e), |_| ValType::I64),
-            map(parser::token(0x7d), |_| ValType::F32),
-            map(parser::token(0x7c), |_| ValType::F64),
-        ))(input)
-    }
+---
+
+### 実行
+* スタックマシンになっている
+* 今回は複数のネストしたスタックを使っている
+
+---
+
+### i32.addの例
+
+```rs
+let y = self.stack.pop().unwrap().unwrap_i32();
+let x = self.stack.pop().unwrap().unwrap_i32();
+self.stack.push(Val::I32(x.overflowing_add(y).0));
+```
+
+---
+
+### returnの例
+
+```rs
+let ret = cur_label.stack.pop();
+if self.stack.pop().unwrap().frame.n != 0 {
+    self.stack
+        .last_mut()
+        .unwrap()
+        .stack
+        .last_mut()
+        .unwrap()
+        .stack
+        .push(ret.unwrap());
+}
+```
+
+---
+
+### 公式のテストケース
+公式がテストケースを用意しているのでそれを使うとテストできる  
+
+https://github.com/WebAssembly/spec/tree/master/test/core
+
+---
+
+### 自作言語を自作インタプリタで動かす
+前wasmにコンパイルする自作言語を作った。それを動かしてみよう。
+
+---
+
+### 自作言語のコード
+
+```
+extern fun "memory" "malloc" malloc(x: i32): i32
+extern fun "io" "print" print(x: i32)
+
+fun main() = {
+    let n = 10;
+    let arr = [i32; n];
+    for(let i = 0; i < n; i = i + 1) {
+        arr[i] = i;
+    };
+    map(inc, n, arr);
+    map(double, n, arr);
+    map(dec, n, arr);
+    forEach(print, n, arr);
+}
+
+fun double(x: i32): i32 = x * 2
+
+fun inc(x: i32): i32 = x + 1
+
+fun dec(x: i32): i32 = x - 1
+
+fun map(f: (i32) => i32, n:i32, arr: [i32]) = {
+    for(let i = 0; i< n; i = i + 1) {
+        arr[i] = f(arr[i]);
+    };
+}
+
+fun forEach(f: (i32) =>, n: i32, arr: [i32]) = {
+    for(let i = 0; i < n; i = i + 1) {
+        f(arr[i]);
+    };
 }
 ```
