@@ -31,10 +31,7 @@ https://anontown.com/
 
 ---
 
-### リポジトリ
-* Rustのcrateになっている
-* ソースもコミットログもドキュメントもひどいけど気にしない
-
+### 今回のリポジトリ
 https://github.com/kgtkr/wasm-rs
 
 ---
@@ -47,7 +44,7 @@ https://github.com/kgtkr/wasm-rs
 ---
 
 ### wasmはどう実行される
-1. バイナリをパース
+1. バイナリをデコード
 2. 検証
 3. 実行
 
@@ -56,3 +53,31 @@ https://github.com/kgtkr/wasm-rs
 ついでに内部表現→バイナリのエンコーダーも作った
 小数命令は実装終わっていない
 -->
+
+---
+
+### AST定義
+仕様書の`Structure`を参考に実装する
+
+---
+
+### valtypeの例
+
+---
+#### 定義
+```
+valtype ::= i32 | i64 | f32 | f64
+```
+
+---
+
+#### Rustコード
+
+```rs
+pub enum ValType {
+    I32,
+    I64,
+    F32,
+    F64,
+}
+```
