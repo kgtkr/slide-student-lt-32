@@ -107,8 +107,6 @@ valtype ::= 0x7F => i32
 #### Rustコード
 
 ```rs
-
-```rs
 impl Encoder for ValType {
     fn encode(&self, bytes: &mut Vec<u8>) {
         bytes.push(match self {
@@ -130,5 +128,4 @@ impl Decoder for ValType {
         ))(input)
     }
 }
-```
 ```
