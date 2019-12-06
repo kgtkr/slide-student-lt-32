@@ -81,3 +81,54 @@ pub enum ValType {
     F64,
 }
 ```
+
+---
+
+### デコード・エンコード
+仕様書の`Binary Format`を参考に実装する。
+
+---
+
+### valtypeの例
+
+---
+
+#### 定義
+
+```
+valtype ::= 0x7F => i32
+        |   0x7E => i64
+        |   0x7D => f32
+        |   0x7C => f64
+```
+
+---
+
+#### Rustコード
+
+```rs
+
+```rs
+impl Encoder for ValType {
+    fn encode(&self, bytes: &mut Vec<u8>) {
+        bytes.push(match self {
+            ValType::I32 => 0x7f,
+            ValType::I64 => 0x7e,
+            ValType::F32 => 0x7d,
+            ValType::F64 => 0x7c,
+        });
+    }
+}
+
+impl Decoder for ValType {
+    fn decode(input: &[u8]) -> IResult<&[u8], ValType> {
+        alt((
+            map(parser::token(0x7f), |_| ValType::I32),
+            map(parser::token(0x7e), |_| ValType::I64),
+            map(parser::token(0x7d), |_| ValType::F32),
+            map(parser::token(0x7c), |_| ValType::F64),
+        ))(input)
+    }
+}
+```
+```
