@@ -208,3 +208,12 @@ Rustはwasmにコンパイルできる。つまり？
 ---
 
 ### ライブデモ
+
+---
+
+qiitaのwasmアドカレの12/22の枠に投稿するよ
+https://qiita.com/advent-calendar/2019/wasm
+
+---
+
+### ご清聴ありがとうございました
