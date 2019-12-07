@@ -12,8 +12,8 @@ https://gitpitch.com/kgtkr/slide-student-lt-32
 ---
 
 ### 自己紹介
-* tkr
-* @kgtkr
+* 名前:tkr
+* Twitter:@kgtkr
 * Web開発・自作言語(最近してない)・競プロ(最近してない)など
 * TypeScriptやScalaを書いています
 * 学生ではない(来年から大学行きます)
