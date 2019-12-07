@@ -180,7 +180,8 @@ https://github.com/WebAssembly/spec/tree/master/test/core
 ---
 
 ### 自作言語を自作インタプリタで動かす
-前wasmにコンパイルする自作言語を作った。それを動かしてみよう。
+昔wasmにコンパイルする自作言語を作った。  
+それを動かしてみよう。
 
 ---
 
@@ -190,7 +191,7 @@ https://github.com/WebAssembly/spec/tree/master/test/core
 
 ### 自作言語 on 自作インタプリタ on 自作インタプリタ
 
-自作インタプリタはRustで作った。
+自作インタプリタはRust製。  
 Rustはwasmにコンパイルできる。つまり？
 
 ---
